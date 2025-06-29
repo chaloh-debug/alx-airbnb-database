@@ -5,10 +5,10 @@
 Ensuring that each table in the database has a primary key and that each column in the table contains atomic values. 
 
 The Attribute 'location' can be further broken down to:
-	- City
-	- Zip code
-	- Town
-	- Street
+- City
+- Zip code
+- Town
+- Street
 
 #### 2. Second Normal Form (2NF)
 
