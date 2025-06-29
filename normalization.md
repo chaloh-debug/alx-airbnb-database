@@ -22,4 +22,4 @@ There were no transitive dependencies in the tables.
 
 # Final Normalized ER diagram
 
-![Image Alt](image_url)
+![Image Alt](https://github.com/chaloh-debug/alx-airbnb-database/blob/main/Normalized_AirBnB_ER_Diagram.png)
