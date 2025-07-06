@@ -12,9 +12,27 @@ FROM booking
 INNER JOIN
     users ON booking.user_id = users.user_id;
 
-
 --left join
-select property.property_id, name from property left join review on property.property_id = review.property_id;
+SELECT
+    property.property_id,
+    property.name,
+    review.review_id,
+    review.rating,
+    review.comment
+FROM property
 
---right join
-select users.user_id, first_name, last_name from users full outer join booking on users.user_id = booking.user_id;
+LEFT JOIN
+    review ON property.property_id = review.property_id;
+
+
+--full outer join
+SELECT
+    users.user_id,
+    users.first_name,
+    users.last_name,
+    booking.booking_id,
+    booking.property_id,
+FROM users
+
+FULL OUTER JOIN
+    booking ON users.user_id = booking.user_id;
