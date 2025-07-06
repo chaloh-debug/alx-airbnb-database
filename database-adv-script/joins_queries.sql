@@ -1,5 +1,16 @@
 --inner join
-select user.user_id, first_name, last_name from users inner join booking on users.user_id = booking.user_id;
+SELECT
+    booking.booking_id,
+    booking.property_id,
+    booking.user_id,
+    booking.start_date,
+    booking.end_date,
+    users.first_name,
+    users.last_name
+FROM booking
+
+INNER JOIN
+    users ON booking.user_id = users.user_id;
 
 
 --left join
