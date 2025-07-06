@@ -3,9 +3,17 @@ SELECT
     property.property_id,
     property.name,
     review.rating
-WHERE
-    review.rating > 4
 FROM
     property
 INNER JOIN
-    review ON property.property_id = review.property_id;
+(
+    SELECT
+        property_id,
+        AVG(review.rating) AS avg_rating
+    FROM
+        review
+    GROUP BY
+        property_id
+) AS ratings ON property.property_id = ratings.property_id -- End of the subquery
+WHERE
+    ratings.avg_rating > 4;
