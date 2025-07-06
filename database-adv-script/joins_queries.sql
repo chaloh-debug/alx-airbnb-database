@@ -1,5 +1,5 @@
 --inner join
-select user.user_id, first_name, last_name from users join booking on users.user_id = booking.user_id;
+select user.user_id, first_name, last_name from users inner join booking on users.user_id = booking.user_id;
 
 
 --left join
