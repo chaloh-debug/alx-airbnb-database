@@ -1,5 +1,11 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+-- Create ENUM types first for PostgreSQL
+CREATE TYPE user_role AS ENUM('guest', 'host', 'admin');
+CREATE TYPE booking_status AS ENUM('pending', 'confirmed', 'canceled');
+CREATE TYPE payment_method_type AS ENUM('credit_card', 'paypal', 'stripe');
+
+-- Table: users (renamed from User to avoid keyword conflict)
 CREATE TABLE users (
     user_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     first_name varchar(36) NOT NULL,
@@ -37,3 +43,20 @@ CREATE TABLE booking (
     CONSTRAINT booking_user_fk FOREIGN KEY (user_id) REFERENCES users(user_id),
     CONSTRAINT booking_property_fk FOREIGN KEY (property_id) REFERENCES property(property_id) ON DELETE CASCADE
 );
+
+-- Index for user login
+CREATE INDEX idx_user_email ON users(email);
+
+-- Indexes for property searches
+CREATE INDEX idx_properties_user_id ON property(user_id);
+CREATE INDEX idx_properties_location ON property(location);
+CREATE INDEX idx_properties_price_per_night ON property(price_per_night);
+
+-- Indexes for booking lookups
+CREATE INDEX idx_bookings_user_id ON booking(user_id);
+
+--analyse performance
+EXPLAIN ANALYZE
+SELECT booking_id, start_date, end_date
+FROM booking
+WHERE property_id = 500;
