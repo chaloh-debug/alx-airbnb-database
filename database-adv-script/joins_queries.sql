@@ -22,7 +22,10 @@ SELECT
 FROM property
 
 LEFT JOIN
-    review ON property.property_id = review.property_id;
+    review ON property.property_id = review.property_id
+
+ORDER BY
+    CASE WHEN review.review_id IS NULL THEN 1 ELSE 0 END;
 
 
 --full outer join
