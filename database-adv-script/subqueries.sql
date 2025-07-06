@@ -4,7 +4,7 @@ SELECT
     property.name,
     review.rating
 WHERE
- FRMreview.rating > 4
+    review.rating > 4
 FROM
     property
 INNER JOIN
